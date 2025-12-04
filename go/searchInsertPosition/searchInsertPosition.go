@@ -5,14 +5,14 @@ func searchInsert(nums []int, target int) int {
 
 	var mid int
 	for left <= right {
-		mid := (left + right) / 2
+		mid = (left + right) / 2
 
-		if nums[mid] == target {
-			return mid
-		} else if nums[mid] < target {
+		if nums[mid] < target {
 			left = mid + 1
-		} else {
+		} else if nums[mid] > target {
 			right = mid - 1
+		} else {
+			return mid
 		}
 	}
 
@@ -30,6 +30,10 @@ func main() {
 	println("Result:", result)
 
 	target = 2
+	result = searchInsert(nums, target)
+	println("Result:", result)
+
+	target = 7
 	result = searchInsert(nums, target)
 	println("Result:", result)
 }
