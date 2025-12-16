@@ -24,6 +24,7 @@ func (c *LRUCache) removeAccessOrder(key string) {
 	for i, accessKey := range c.accessOrder {
 		if accessKey == key {
 			c.accessOrder = append(c.accessOrder[:i], c.accessOrder[i+1:]...)
+			break
 		}
 	}
 }
@@ -68,7 +69,6 @@ func (c *LRUCache) Put(key string, value int) {
 	if len(c.cache) >= c.capacity {
 		evicted := c.evictAccessOrder()
 		delete(c.cache, evicted)
-		c.removeAccessOrder(evicted)
 	}
 
 	c.cache[key] = value
