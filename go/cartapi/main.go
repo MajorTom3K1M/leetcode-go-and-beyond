@@ -6,14 +6,21 @@ import (
 )
 
 func main() {
-	items := []int{150, 250, 100, 300} // prices
-	quantities := []int{2, 1, 3, 1}    // quantities
-	types := []string{"product", "product", "product", "product"}
+	testcases := []struct {
+		price    int
+		quantity int
+		itemType string
+	}{
+		{150, 2, "product"},
+		{250, 1, "product"},
+		{100, 3, "product"},
+		{300, 1, "product"},
+	}
 
 	shoppingCart := cart.NewCart()
 
-	for i := 0; i < len(items); i++ {
-		shoppingCart.Add(items[i], quantities[i], types[i])
+	for i := 0; i < len(testcases); i++ {
+		shoppingCart.Add(testcases[i].price, testcases[i].quantity, testcases[i].itemType)
 	}
 
 	result := shoppingCart.Checkout()
