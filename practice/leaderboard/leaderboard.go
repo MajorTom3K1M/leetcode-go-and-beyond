@@ -24,6 +24,7 @@ func NewLeaderboard() *Leaderboard {
 func (l *Leaderboard) AddScore(playerName string, score int) {
 	if _, ok := l.scores[playerName]; ok {
 		l.scores[playerName].Score += score
+		return
 	}
 
 	l.scores[playerName] = &PlayerScore{
@@ -106,7 +107,7 @@ func main() {
 	lb.AddScore("Alice", 100)
 	lb.AddScore("Bob", 250)
 	lb.AddScore("Charlie", 180)
-	lb.AddScore("Alice", 50) // Alice now has 150
+	lb.AddScore("Alice", 90) // Alice now has 150
 
 	fmt.Println(lb.GetPlayerScore("Alice")) // 150
 
